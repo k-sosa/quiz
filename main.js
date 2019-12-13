@@ -3,111 +3,110 @@
 //step 3  answer correct no penalty, answer incorrectly you are penalized 15 seconds, high score cannot go below zero
 
 const questions = [
-    {
-      title: "Commonly used data types DO NOT include:",
-      choices: ["strings", "booleans", "alerts", "numbers"],
-      answer: "alerts"
-    },
-    {
-      title: "The condition in an if / else statement is enclosed within ____.",
-      choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-      answer: "parentheses"
-    },
-    {
-      title: "What is a for loop?",
-      choices: ["for", "while", "if statement", "parentheses"],
-      answer: "parentheses"
-    },
-    {
-      title: "How to declare an array.",
-      choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-      answer: "parentheses"
-    },
-    {
-      title: "How to declare an object",
-      choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-      answer: "parentheses"
-    }
-    ///etc.
-  ];
+  {
+    title: "Commonly used data types DO NOT include:",
+    choices: ["strings", "booleans", "alerts", "numbers"],
+    answer: "alerts"
+  },
+  {
+    title: "The condition in an if / else statement is enclosed within ____.",
+    choices: ["quotes", "curly brackets", "parentheses", "back slash"],
+    answer: "parentheses"
+  },
+  {
+    title: "What is a for loop?",
+    choices: ["for", "while", "if statement", "code executed repeatedly"],
+    answer: "code executed repeatedly"
+  },
+  {
+    title: "How to declare an array.",
+    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
+    answer: "square brackets"
+  },
+  {
+    title: "How to declare an object",
+    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
+    answer: "curly brackets"
+  }
+  ///etc.
+];
 
-  const start= document.querySelector('#time');
-
-
-  const displayscore = document.querySelector("#displayscore")
+const start = document.querySelector('#time');
 
 
-  displayscore.style="display:none"
+const displayscore = document.querySelector("#displayscore")
 
-var maxtime= questions.length * 15
 
-  const qanda = document.querySelector("#qanda");
+displayscore.style = "display:none"
 
-  let count= maxtime;
+var maxtime = questions.length * 15
 
- let counter; //1000 will  run it every 1 second
+const qanda = document.querySelector("#qanda");
 
-  qanda.style="display:none"
- let score ;
-  function myFunction() {
-    qanda.style="display:''"
-   
-    counter=setInterval(timer, 1000);
+let count = maxtime;
 
-  };
-  
-let index=0;
-let div= document.createElement("div")
-div.textContent=questions[index].title
-   qanda.appendChild(div)
+let counter; //1000 will  run it every 1 second
+
+qanda.style = "display:none"
+let score;
+function myFunction() {
+  qanda.style = "display:''"
+
+  counter = setInterval(timer, 1000);
+
+};
+
+let index = 0;
+let div = document.createElement("div")
+div.textContent = questions[index].title
+qanda.appendChild(div)
 for (let i = 0; i < questions[index].choices.length; i++) {
-  let button= document.createElement("button")
-  button.textContent=questions[index].choices[i]
-  let br=document.createElement("br")
-  button.setAttribute("data-rightAnswer",questions[index].answer)
+  let button = document.createElement("button")
+  button.textContent = questions[index].choices[i]
+  let br = document.createElement("br")
+  button.setAttribute("data-rightAnswer", questions[index].answer)
   qanda.appendChild(button)
   qanda.appendChild(br)
 
 }
-   index++
+index++
 
-function timer()
-{
+function timer() {
 
-  count=count-1;
- 
-  start.textContent= count
+  count = count - 1;
+
+  start.textContent = count
+
   
-  if(count % 15 === 0){
-    qanda.innerHTML="";
-    div.textContent=questions[index].title
+  if (count % 15 === 0) {
+    qanda.innerHTML = "";
+    div.textContent = questions[index].title
     qanda.appendChild(div)
 
     for (let i = 0; i < questions[index].choices.length; i++) {
-      let button= document.createElement("button")
-      button.textContent=questions[index].choices[i]
-      let br=document.createElement("br")
-      button.setAttribute("data-rightAnswer",questions[index].answer)
+      let button = document.createElement("button")
+      button.textContent = questions[index].choices[i]
+      let br = document.createElement("br")
+      button.setAttribute("data-rightAnswer", questions[index].answer)
       qanda.appendChild(button)
       qanda.appendChild(br)
-     
+
     }
     index++;
   }
-
-
-  if (count === 0)
-  {
-    qanda.style="display:none"
-    displayscore.style="display:''"
-
-     clearInterval(counter);
-     //counter ended, do something here
-     return;
+  function stop() {
+    clearInterval(count);
+    return;
+  }
+  
+  if (count === 0) {
+    qanda.style = "display:none"
+    displayscore.style = "display:''"
+    return stop();
+    
   }
 
 
-  //Do code for showing the number of seconds here
+
+  
 }
-
-
